@@ -65,7 +65,7 @@ export default async function AboutPage() {
           Ready to bring your ideas to life? We&rsquo;d love to hear from you.
         </p>
         <a
-          href="mailto:hello@example.com"
+          							href="mailto:hello@owsconsultinggroup.com"
           className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
         >
           Get In Touch

@@ -147,7 +147,7 @@ export function getSiteSettings(): SiteSettings {
     return {
       site_title: 'Modern Website',
       site_description: 'A beautiful, modern website built with Next.js and Decap CMS',
-      contact_email: 'hello@example.com',
+      		contact_email: 'hello@owsconsultinggroup.com',
       social: {},
     };
   }
