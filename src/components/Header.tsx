@@ -1,11 +1,12 @@
 import { Navigation, SiteSettings } from '@/lib/content';
+import Image from 'next/image';
 
 interface HeaderProps {
   navigation: Navigation;
   siteSettings: SiteSettings;
 }
 
-export default function Header({ navigation, siteSettings }: HeaderProps) {
+export default function Header({ navigation }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#08192d]/30 backdrop-blur-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,9 +17,11 @@ export default function Header({ navigation, siteSettings }: HeaderProps) {
               href="#home" 
               className="hover:opacity-90 transition-opacity"
             >
-              <img 
+              <Image 
                 src="/assets/images/Obsessed_With_Success-SiteLogo.png" 
                 alt="Obsessed With Success Logo" 
+                width={200}
+                height={52}
                 className="h-11 md:h-13 w-auto drop-shadow-lg"
               />
             </a>

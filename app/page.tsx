@@ -1,6 +1,6 @@
 import { getPageBySlug, getSiteSettings } from '@/lib/content';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 export default async function Home() {
   const homeContent = await getPageBySlug('home');
@@ -16,10 +16,12 @@ export default async function Home() {
       <section id="home" className="relative min-h-screen flex items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
-            src={homeContent.featured_image} 
+          <Image 
+            src={homeContent.featured_image || '/assets/images/heroimg.png'} 
             alt="Hero background" 
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-[#08192d]/50 z-10"></div>
         </div>
@@ -38,8 +40,8 @@ export default async function Home() {
           
           <div className="mb-12">
             <p className="text-lg md:text-xl text-[#deae54] font-medium italic drop-shadow-md">
-              "What separates us is that we are professionals that have worked in the space, 
-              so we know what good looks like regardless of resume."
+              &ldquo;What separates us is that we are professionals that have worked in the space, 
+              so we know what good looks like regardless of resume.&rdquo;
             </p>
           </div>
 
@@ -86,7 +88,7 @@ export default async function Home() {
                 We focus on matching <strong className="text-slate-900">potential with purpose</strong>.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Our team consists of industry veterans who have held the very positions we're helping to fill. 
+                Our team consists of industry veterans who have held the very positions we&rsquo;re helping to fill. 
                 This insider perspective allows us to identify what others miss.
               </p>
             </div>
@@ -112,7 +114,7 @@ export default async function Home() {
                 <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
                 <div>
                   <h3 className="text-xl font-medium text-slate-900 mb-2">Understand Real Challenges</h3>
-                  <p className="text-slate-600">We've been in your shoes and know what each role truly demands.</p>
+                  <p className="text-slate-600">We&rsquo;ve been in your shoes and know what each role truly demands.</p>
                 </div>
               </div>
             </div>
@@ -143,7 +145,7 @@ export default async function Home() {
               <h3 className="text-2xl font-medium text-slate-900 mb-4">Executive Recruiting</h3>
               <p className="text-slate-600 leading-relaxed">
                 Premium talent acquisition for C-suite and senior leadership positions. 
-                We understand what it takes to lead because we've led.
+                We understand what it takes to lead because we&rsquo;ve led.
               </p>
             </div>
 
@@ -234,8 +236,8 @@ export default async function Home() {
 
           <div className="text-center mt-16">
             <blockquote className="serif-heading text-2xl md:text-3xl font-light text-[#deae54] italic max-w-4xl mx-auto leading-relaxed">
-              "We don't just place candidates. We elevate careers and transform organizations 
-              through the power of experience-driven insight."
+              &ldquo;We don&rsquo;t just place candidates. We elevate careers and transform organizations 
+              through the power of experience-driven insight.&rdquo;
             </blockquote>
           </div>
         </div>
@@ -251,7 +253,7 @@ export default async function Home() {
             <div className="w-24 h-1 bg-[#deae54] mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Ready to work with recruiters who truly understand your industry? 
-              Let's discuss how our experience becomes your advantage.
+              Let&rsquo;s discuss how our experience becomes your advantage.
             </p>
           </div>
 
