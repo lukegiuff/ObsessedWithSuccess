@@ -1,0 +1,16 @@
+items:
+  - label: "Home"
+    url: "#home"
+    external: false
+  - label: "About"
+    url: "#about"
+    external: false
+  - label: "Services"
+    url: "#services"
+    external: false
+  - label: "Approach"
+    url: "#approach"
+    external: false
+  - label: "Contact"
+    url: "#contact"
+    external: false 

@@ -1,0 +1,5 @@
+/*
+  X-Frame-Options: DENY
+
+/admin/*
+  X-Frame-Options: SAMEORIGIN 
