@@ -1,6 +1,7 @@
 import { getAllBlogPosts } from '@/lib/content';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -32,11 +33,12 @@ export default async function BlogPage() {
             >
               {/* Featured Image */}
               {post.featured_image && (
-                <div className="aspect-video bg-gray-200">
-                  <img
+                <div className="aspect-video bg-gray-200 relative">
+                  <Image
                     src={post.featured_image}
                     alt={post.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
               )}
@@ -94,7 +96,7 @@ export default async function BlogPage() {
               No posts yet
             </h2>
             <p className="text-gray-600 mb-8">
-              We're working on some great content. Check back soon!
+              We&rsquo;re working on some great content. Check back soon!
             </p>
             <Link
               href="/admin/"

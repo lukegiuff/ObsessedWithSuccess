@@ -2,6 +2,7 @@ import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/content';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -93,11 +94,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Featured Image */}
       {post.featured_image && (
-        <div className="mb-12">
-          <img
+        <div className="mb-12 relative h-64 md:h-96">
+          <Image
             src={post.featured_image}
             alt={post.title}
-            className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
+            fill
+            className="object-cover rounded-lg shadow-lg"
           />
         </div>
       )}

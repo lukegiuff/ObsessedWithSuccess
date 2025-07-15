@@ -1,6 +1,7 @@
 import { getPageBySlug } from '@/lib/content';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 export async function generateMetadata(): Promise<Metadata> {
   const aboutContent = await getPageBySlug('about');
@@ -40,11 +41,12 @@ export default async function AboutPage() {
 
       {/* Featured Image */}
       {aboutContent.featured_image && (
-        <div className="mb-12">
-          <img
+        <div className="mb-12 relative h-64 md:h-96">
+          <Image
             src={aboutContent.featured_image}
             alt={aboutContent.title}
-            className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
+            fill
+            className="object-cover rounded-lg shadow-lg"
           />
         </div>
       )}
@@ -57,10 +59,10 @@ export default async function AboutPage() {
       {/* Call to Action */}
       <div className="mt-16 bg-gray-50 rounded-2xl p-8 text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Let's Work Together
+          Let&rsquo;s Work Together
         </h2>
         <p className="text-gray-600 mb-6">
-          Ready to bring your ideas to life? We'd love to hear from you.
+          Ready to bring your ideas to life? We&rsquo;d love to hear from you.
         </p>
         <a
           href="mailto:hello@example.com"
