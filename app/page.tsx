@@ -40,7 +40,7 @@ export default async function Home() {
           
           <div className="mb-12">
             <p className="text-lg md:text-xl text-[#deae54] font-medium italic drop-shadow-md">
-              &ldquo;What separates us is that we are professionals that have worked in the space, 
+              &ldquo;What separates us is that we are telecommunications professionals that have worked in the space, 
               so we know what good looks like regardless of resume.&rdquo;
             </p>
           </div>
@@ -142,10 +142,10 @@ export default async function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-medium text-slate-900 mb-4">Executive Recruiting</h3>
+              <h3 className="text-2xl font-medium text-slate-900 mb-4">Telecommunications Executive Recruiting</h3>
               <p className="text-slate-600 leading-relaxed">
-                Premium talent acquisition for C-suite and senior leadership positions. 
-                We understand what it takes to lead because we&rsquo;ve led.
+                Premium talent acquisition for C-suite and senior leadership positions in telecommunications and network infrastructure. 
+                We understand what it takes to lead telecom transformation because we&rsquo;ve led it.
               </p>
             </div>
 
@@ -155,10 +155,10 @@ export default async function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-medium text-slate-900 mb-4">Strategic Consulting</h3>
+              <h3 className="text-2xl font-medium text-slate-900 mb-4">Telecom Strategic Consulting</h3>
               <p className="text-slate-600 leading-relaxed">
-                Organizational development and talent strategy consulting informed by 
-                real-world operational experience.
+                Organizational development and talent strategy consulting for telecommunications companies, informed by 
+                real-world operational experience in network deployments and technology transitions.
               </p>
             </div>
 
@@ -168,10 +168,10 @@ export default async function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-medium text-slate-900 mb-4">Professional Staffing</h3>
+              <h3 className="text-2xl font-medium text-slate-900 mb-4">Telecommunications Professional Staffing</h3>
               <p className="text-slate-600 leading-relaxed">
-                Mid-level to senior professional placements across key business functions 
-                with a focus on long-term success.
+                Mid-level to senior professional placements in network engineering, RF optimization, and telecom operations 
+                with a focus on long-term success and industry expertise.
               </p>
             </div>
           </div>
@@ -202,11 +202,11 @@ export default async function Home() {
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-red-400">×</span>
-                  <span>Limited industry understanding</span>
+                  <span>Limited telecommunications industry understanding</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-red-400">×</span>
-                  <span>Transactional relationship</span>
+                  <span>Transactional, one-size-fits-all approach</span>
                 </li>
               </ul>
             </div>
@@ -216,19 +216,19 @@ export default async function Home() {
               <ul className="space-y-4 text-gray-200">
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
-                  <span>Evaluates potential and fit</span>
+                  <span>Evaluates telecommunications expertise and cultural fit</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
-                  <span>Understands real-world requirements</span>
+                  <span>Understands complex telecom technology requirements</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
-                  <span>Industry veteran insight</span>
+                  <span>Telecommunications industry veteran insight</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
-                  <span>Long-term partnership focus</span>
+                  <span>Long-term partnership with scalable expertise</span>
                 </li>
               </ul>
             </div>
@@ -252,8 +252,8 @@ export default async function Home() {
             </h2>
             <div className="w-24 h-1 bg-[#deae54] mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Ready to work with recruiters who truly understand your industry? 
-              Let&rsquo;s discuss how our experience becomes your advantage.
+              Ready to work with recruiters who truly understand the telecommunications industry? 
+              Let&rsquo;s discuss how our specialized expertise becomes your competitive advantage.
             </p>
           </div>
 
@@ -292,10 +292,10 @@ export default async function Home() {
               <div>
                 <h3 className="text-2xl font-medium text-slate-900 mb-6">What to Expect</h3>
                 <div className="space-y-4 text-slate-600">
-                  <p>✓ Initial consultation within 24 hours</p>
-                  <p>✓ Customized talent strategy discussion</p>
-                  <p>✓ No obligation, just conversation</p>
-                  <p>✓ Insights from industry veterans</p>
+                  <p>✓ Initial telecommunications consultation within 24 hours</p>
+                  <p>✓ Customized telecom talent strategy discussion</p>
+                  <p>✓ No obligation, just industry-focused conversation</p>
+                  <p>✓ Insights from telecommunications industry veterans</p>
                 </div>
               </div>
             </div>
