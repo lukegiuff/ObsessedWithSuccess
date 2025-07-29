@@ -13,17 +13,17 @@ export default async function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center">
+      <section id="home" className="relative h-[85vh] flex items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image 
-            src={homeContent.featured_image || '/assets/images/heroimg.png'} 
+            src={homeContent.featured_image || '/assets/images/newhero.jpg'} 
             alt="Hero background" 
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
-          <div className="absolute inset-0 bg-[#08192d]/50 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#08192d]/95 via-[#08192d]/85 to-[#08192d]/60 z-10"></div>
         </div>
 
         {/* Hero Content */}

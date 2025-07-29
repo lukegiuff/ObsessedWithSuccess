@@ -1,7 +1,7 @@
 ---
 title: "Obsessed With Success"
 description: "Built by Operators, Driven by Results. We are Obsessed With Your Success!"
-featured_image: "/assets/images/heroimg.png"
+featured_image: "/assets/images/newhero.jpg"
 ---
 
 # Built by Operators, Driven by Results
