@@ -13,6 +13,20 @@ export interface PageContent {
   description?: string;
   featured_image?: string;
   content: string;
+  parsedSections?: {
+    heroQuote?: string;
+    services?: ServiceSection[];
+    approach?: {
+      traditional: string[];
+      ourApproach: string[];
+    };
+    contactMessage?: string;
+  };
+}
+
+export interface ServiceSection {
+  title: string;
+  description: string;
 }
 
 export interface BlogPost {
@@ -53,6 +67,90 @@ async function markdownToHtml(markdown: string): Promise<string> {
   return result.toString();
 }
 
+// Parse markdown content into structured sections
+function parseMarkdownSections(content: string): PageContent['parsedSections'] {
+  const lines = content.split('\n');
+  const sections: PageContent['parsedSections'] = {
+    services: [],
+    approach: {
+      traditional: [],
+      ourApproach: []
+    }
+  };
+  
+  // Extract hero quote (first paragraph with bold text)
+  const firstParagraph = lines.find(line => line.includes('**') && line.includes('technology professionals'));
+  if (firstParagraph) {
+    sections.heroQuote = firstParagraph.replace(/\*\*/g, '').trim();
+  }
+  
+  // Parse services directly by finding ### headers that look like services
+  let currentService: Partial<ServiceSection> = {};
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    if (line.startsWith('### ') && (
+      line.includes('Technology') || 
+      line.includes('Executive') || 
+      line.includes('Strategic') || 
+      line.includes('Professional') ||
+      line.includes('Recruiting') ||
+      line.includes('Consulting') ||
+      line.includes('Staffing')
+    )) {
+      // Save previous service if exists
+      if (currentService.title && currentService.description?.trim()) {
+        sections.services!.push({
+          title: currentService.title,
+          description: currentService.description.trim()
+        });
+      }
+      
+      // Start new service
+      currentService = {
+        title: line.replace('### ', '').trim(),
+        description: ''
+      };
+      
+      // Look ahead for the description
+      for (let j = i + 1; j < lines.length; j++) {
+        const nextLine = lines[j].trim();
+        if (nextLine.startsWith('###') || nextLine.startsWith('##') || nextLine === '---') {
+          break;
+        }
+        if (nextLine) {
+          currentService.description = currentService.description 
+            ? currentService.description + ' ' + nextLine 
+            : nextLine;
+        }
+      }
+    }
+  }
+  
+  // Save final service
+  if (currentService.title && currentService.description?.trim()) {
+    sections.services!.push({
+      title: currentService.title,
+      description: currentService.description.trim()
+    });
+  }
+  
+  // Services successfully parsed from markdown
+  
+  // Extract contact message from the last section
+  const lastSectionIndex = content.lastIndexOf('## Experience the Technology Difference');
+  if (lastSectionIndex !== -1) {
+    const lastSection = content.substring(lastSectionIndex);
+    const messageMatch = lastSection.match(/Ready to work with recruiters[^*]+/);
+    if (messageMatch) {
+      sections.contactMessage = messageMatch[0].trim();
+    }
+  }
+  
+  return sections;
+}
+
 // Get page content by slug
 export async function getPageBySlug(slug: string): Promise<PageContent | null> {
   try {
@@ -61,6 +159,7 @@ export async function getPageBySlug(slug: string): Promise<PageContent | null> {
     const { data, content } = matter(fileContents);
     
     const htmlContent = await markdownToHtml(content);
+    const parsedSections = parseMarkdownSections(content);
     
     return {
       slug,
@@ -68,6 +167,7 @@ export async function getPageBySlug(slug: string): Promise<PageContent | null> {
       description: data.description,
       featured_image: data.featured_image,
       content: htmlContent,
+      parsedSections,
     };
   } catch (error) {
     console.error(`Error reading page ${slug}:`, error);

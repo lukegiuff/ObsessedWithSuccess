@@ -38,12 +38,13 @@ export default async function Home() {
             {homeContent.description}
           </p>
           
-          <div className="mb-12">
-            <p className="text-lg md:text-xl text-[#deae54] font-medium italic drop-shadow-md">
-              &ldquo;What separates us is that we are telecommunications professionals that have worked in the space, 
-              so we know what good looks like regardless of resume.&rdquo;
-            </p>
-          </div>
+          {homeContent.parsedSections?.heroQuote && (
+            <div className="mb-12">
+              <p className="text-lg md:text-xl text-[#deae54] font-medium italic drop-shadow-md">
+                &ldquo;{homeContent.parsedSections.heroQuote}&rdquo;
+              </p>
+            </div>
+          )}
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a
@@ -136,44 +137,65 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="w-16 h-16 bg-[#deae54]/10 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-[#deae54]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-medium text-slate-900 mb-4">Telecommunications Executive Recruiting</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Premium talent acquisition for C-suite and senior leadership positions in telecommunications and network infrastructure. 
-                We understand what it takes to lead telecom transformation because we&rsquo;ve led it.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="w-16 h-16 bg-[#deae54]/10 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-[#deae54]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-medium text-slate-900 mb-4">Telecom Strategic Consulting</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Organizational development and talent strategy consulting for telecommunications companies, informed by 
-                real-world operational experience in network deployments and technology transitions.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="w-16 h-16 bg-[#deae54]/10 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-[#deae54]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-medium text-slate-900 mb-4">Telecommunications Professional Staffing</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Mid-level to senior professional placements in network engineering, RF optimization, and telecom operations 
-                with a focus on long-term success and industry expertise.
-              </p>
-            </div>
+            {homeContent.parsedSections?.services?.length ? (
+              homeContent.parsedSections.services.map((service, index) => {
+                const icons = [
+                  <path key={0} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />,
+                  <path key={1} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />,
+                  <path key={2} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                ];
+                
+                return (
+                  <div key={index} className="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-16 h-16 bg-[#deae54]/10 rounded-lg flex items-center justify-center mb-6">
+                      <svg className="w-8 h-8 text-[#deae54]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {icons[index % icons.length]}
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-medium text-slate-900 mb-4">{service.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                );
+              })
+            ) : (
+              // Fallback to hardcoded services if parsing fails
+              [
+                {
+                  title: "Technology Executive Recruiting",
+                  description: "Premium talent acquisition for C-suite and senior leadership positions across Software, Data, Cloud, Security, and Telecom. We understand what it takes to lead technology transformation because we've led it."
+                },
+                {
+                  title: "Technology Strategic Consulting",
+                  description: "Organizational development and talent strategy consulting for technology companies, informed by real-world operational experience in software delivery, cloud migrations, security implementations, and data platform deployments."
+                },
+                {
+                  title: "Technology Professional Staffing",
+                  description: "Mid-level to senior professional placements in software engineering, data science, cloud solutions, security operations, and telecom engineering with a focus on long-term success and deep technical expertise."
+                }
+              ].map((service, index) => {
+                const icons = [
+                  <path key={0} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />,
+                  <path key={1} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />,
+                  <path key={2} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                ];
+                
+                return (
+                  <div key={index} className="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-16 h-16 bg-[#deae54]/10 rounded-lg flex items-center justify-center mb-6">
+                      <svg className="w-8 h-8 text-[#deae54]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {icons[index % icons.length]}
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-medium text-slate-900 mb-4">{service.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </section>
@@ -202,7 +224,7 @@ export default async function Home() {
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-red-400">×</span>
-                  <span>Limited telecommunications industry understanding</span>
+                  <span>Limited technology industry understanding</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-red-400">×</span>
@@ -216,15 +238,15 @@ export default async function Home() {
               <ul className="space-y-4 text-gray-200">
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
-                  <span>Evaluates telecommunications expertise and cultural fit</span>
+                  <span>Evaluates technology expertise and cultural fit across multiple domains</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
-                  <span>Understands complex telecom technology requirements</span>
+                  <span>Understands complex technology requirements from software to security</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
-                  <span>Telecommunications industry veteran insight</span>
+                  <span>Technology industry veteran insight across specializations</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span className="text-green-400">✓</span>
@@ -252,8 +274,9 @@ export default async function Home() {
             </h2>
             <div className="w-24 h-1 bg-[#deae54] mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Ready to work with recruiters who truly understand the telecommunications industry? 
-              Let&rsquo;s discuss how our specialized expertise becomes your competitive advantage.
+              {homeContent.parsedSections?.contactMessage || 
+                "Ready to work with recruiters who truly understand the technology landscape across Software, Data, Cloud, Security, and Telecom? Let's discuss how our specialized expertise becomes your competitive advantage."
+              }
             </p>
           </div>
 
@@ -292,10 +315,10 @@ export default async function Home() {
               <div>
                 <h3 className="text-2xl font-medium text-slate-900 mb-6">What to Expect</h3>
                 <div className="space-y-4 text-slate-600">
-                  <p>✓ Initial telecommunications consultation within 24 hours</p>
-                  <p>✓ Customized telecom talent strategy discussion</p>
+                  <p>✓ Initial technology consultation within 24 hours</p>
+                  <p>✓ Customized technology talent strategy discussion</p>
                   <p>✓ No obligation, just industry-focused conversation</p>
-                  <p>✓ Insights from telecommunications industry veterans</p>
+                  <p>✓ Insights from technology industry veterans</p>
                 </div>
               </div>
             </div>
