@@ -1,7 +1,13 @@
 site_title: "Obsessed With Success"
-site_description: "Built by Operators, Driven by Results. We are Obsessed With Your Success! Telecommunications recruiting and consulting firm where industry professionals who have operated in the space connect you with specialized excellence."
+site_description: "Built by Operators, Driven by Results. We are Obsessed With Your Success! Technology recruiting and consulting firm specializing in Software, Data, Cloud, Security, and Telecom where industry professionals who have operated in the space connect you with specialized excellence."
 contact_email: "hello@owsconsultinggroup.com"
 social:
   twitter: "@ObsessedSuccess"
   linkedin: "company/obsessed-with-success"
-  github: "" 
+  github: ""
+specializations:
+  - name: "SOFTWARE"
+  - name: "DATA"
+  - name: "CLOUD"
+  - name: "SECURITY"
+  - name: "TELECOM" 

@@ -52,6 +52,12 @@ collections:
               {label: "LinkedIn", name: "linkedin", widget: "string", required: false},
               {label: "GitHub", name: "github", widget: "string", required: false}
             ]}
+          - label: "Technology Specializations"
+            name: "specializations"
+            widget: "list"
+            default: ["SOFTWARE", "DATA", "CLOUD", "SECURITY", "TELECOM"]
+            fields:
+              - {label: "Specialization", name: "name", widget: "string"}
 
   - name: "navigation"
     label: "Navigation"

@@ -1,36 +1,37 @@
 ---
 title: "About Us"
-description: "Learn about our mission, values, and the team behind this amazing website"
+description: "Learn about our mission, values, and the technology expertise behind Obsessed With Success"
 ---
 
-# About Our Company
+# About Obsessed With Success
 
-We are a forward-thinking organization dedicated to creating exceptional digital experiences. Our mission is to bridge the gap between cutting-edge technology and user-friendly design.
+We are a specialized technology recruiting and consulting firm **built by operators, driven by results**. Our mission is to connect exceptional technology talent with organizations that demand excellence across **Software, Data, Cloud, Security, and Telecommunications**.
 
 ## Our Story
 
-Founded with the vision of making the web more accessible and beautiful, we've been at the forefront of modern web development. Our journey began with a simple idea: that every website should be fast, beautiful, and easy to manage.
+Founded by technology professionals who have operated in the space, we understand what separates good talent from transformational talent. Our journey began with a simple realization: traditional recruiting firms don't truly understand the complex technical requirements and evolving nature of modern technology roles.
 
 ### What Drives Us
 
-- **Innovation**: We constantly explore new technologies and methodologies
-- **Quality**: Every project is crafted with attention to detail and excellence
-- **Accessibility**: We believe the web should be accessible to everyone
-- **Sustainability**: Building for the long term with maintainable, scalable solutions
+- **Operator Experience**: We've been in the trenches, so we know what success looks like
+- **Technical Depth**: We assess competency beyond surface-level certifications
+- **Industry Specialization**: Deep expertise across Software, Data, Cloud, Security, and Telecom
+- **Results Focus**: We're obsessed with your success, not just filling positions
 
 ## Our Approach
 
-We combine the power of modern frameworks like Next.js with intuitive content management systems to create websites that are both powerful and easy to maintain. Our approach ensures that you can focus on your content while we handle the technical complexity.
+We go beyond keyword matching and resume screening. Our team of technology industry veterans brings real-world operational experience across multiple domains, allowing us to identify talent that others overlook and assess technical competency that matters.
 
-### Technologies We Love
+### Our Technology Specializations
 
-- **Next.js**: For blazing-fast, SEO-friendly websites
-- **Decap CMS**: For intuitive content management
-- **Cloudflare**: For global performance and security
-- **Modern CSS**: For beautiful, responsive designs
+- **Software Development**: Full-stack engineering, DevOps, platform architecture
+- **Data Engineering**: Analytics platforms, data science, machine learning operations  
+- **Cloud Architecture**: Multi-cloud strategies, infrastructure as code, cloud-native development
+- **Cybersecurity**: Security operations, compliance, risk management, security architecture
+- **Telecommunications**: Network engineering, 5G/wireless technologies, telecom operations
 
-## Contact Us
+## Why Choose Us
 
-Ready to work with us? We'd love to hear from you! Reach out through our contact form or connect with us on social media.
+Because we&rsquo;ve operated in these technology spaces ourselves, we understand the nuances that make the difference between a good hire and a transformational one. We don&rsquo;t just find candidates—we find the professionals who will drive your technology initiatives forward.
 
-*This page demonstrates how easy it is to manage content with our CMS system.* 
+**Ready to experience the difference?** Let&rsquo;s discuss how our technology expertise becomes your competitive advantage. 
