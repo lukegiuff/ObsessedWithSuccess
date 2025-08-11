@@ -1,4 +1,7 @@
-backend:
+import { NextResponse } from 'next/server'
+
+export async function GET() {
+  const config = `backend:
   name: github
   repo: giuffa88/ObsessedWithSuccess
   branch: main
@@ -72,4 +75,12 @@ collections:
             fields:
               - {label: "Label", name: "label", widget: "string"}
               - {label: "URL", name: "url", widget: "string"}
-              - {label: "External", name: "external", widget: "boolean", default: false} 
+              - {label: "External", name: "external", widget: "boolean", default: false}`;
+
+  return new NextResponse(config, {
+    headers: {
+      'Content-Type': 'text/yaml',
+      'Cache-Control': 'no-cache',
+    },
+  })
+}

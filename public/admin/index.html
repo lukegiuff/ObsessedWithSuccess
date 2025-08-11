@@ -3,10 +3,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
   <title>Content Manager</title>
+  <script>
+    // Set manual init BEFORE loading CMS
+    window.CMS_MANUAL_INIT = true;
+  </script>
 </head>
 <body>
   <div id="nc-root"></div>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Initialize CMS with config
+    const config = {
+      backend: {
+        name: 'github',
+        repo: 'giuffa88/ObsessedWithSuccess',
+        branch: 'main',
+        base_url: 'https://decap-proxy-obsessedwithsuccess.giuffa88.workers.dev',
+        auth_endpoint: '/auth'
+      },
+      local_backend: false,
+      site_url: 'https://owsconsultinggroup.com',
+      display_url: 'https://owsconsultinggroup.com',
+      media_folder: 'public/assets/images',
+      public_folder: '/assets/images',
+      collections: [
+        {
+          name: 'pages',
+          label: 'Pages',
+          folder: 'content/pages',
+          create: true,
+          slug: '{{slug}}',
+          fields: [
+            {label: 'Title', name: 'title', widget: 'string'},
+            {label: 'Description', name: 'description', widget: 'text', required: false},
+            {label: 'Body', name: 'body', widget: 'markdown'},
+            {label: 'Featured Image', name: 'featured_image', widget: 'image', required: false}
+          ]
+        },
+        {
+          name: 'blog',
+          label: 'Blog Posts',
+          folder: 'content/blog',
+          create: true,
+          slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+          fields: [
+            {label: 'Title', name: 'title', widget: 'string'},
+            {label: 'Publish Date', name: 'date', widget: 'datetime'},
+            {label: 'Description', name: 'description', widget: 'text'},
+            {label: 'Featured Image', name: 'featured_image', widget: 'image', required: false},
+            {label: 'Tags', name: 'tags', widget: 'list', required: false},
+            {label: 'Body', name: 'body', widget: 'markdown'}
+          ]
+        },
+        {
+          name: 'settings',
+          label: 'Site Settings',
+          files: [
+            {
+              file: 'content/settings/general.yml',
+              label: 'General Settings',
+              name: 'general',
+              fields: [
+                {label: 'Site Title', name: 'site_title', widget: 'string'},
+                {label: 'Site Description', name: 'site_description', widget: 'text'},
+                {label: 'Site Logo', name: 'site_logo', widget: 'image', required: false},
+                {label: 'Contact Email', name: 'contact_email', widget: 'string'},
+                {
+                  label: 'Social Media',
+                  name: 'social',
+                  widget: 'object',
+                  fields: [
+                    {label: 'Twitter', name: 'twitter', widget: 'string', required: false},
+                    {label: 'LinkedIn', name: 'linkedin', widget: 'string', required: false},
+                    {label: 'GitHub', name: 'github', widget: 'string', required: false}
+                  ]
+                },
+                {
+                  label: 'Technology Specializations',
+                  name: 'specializations',
+                  widget: 'list',
+                  default: ['SOFTWARE', 'DATA', 'CLOUD', 'SECURITY', 'TELECOM'],
+                  fields: [
+                    {label: 'Specialization', name: 'name', widget: 'string'}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'navigation',
+          label: 'Navigation',
+          files: [
+            {
+              file: 'content/navigation/main.yml',
+              label: 'Main Navigation',
+              name: 'main',
+              fields: [
+                {
+                  label: 'Navigation Items',
+                  name: 'items',
+                  widget: 'list',
+                  fields: [
+                    {label: 'Label', name: 'label', widget: 'string'},
+                    {label: 'URL', name: 'url', widget: 'string'},
+                    {label: 'External', name: 'external', widget: 'boolean', default: false}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+    
+    CMS.init({ config });
+  </script>
 </body>
-</html> 
+</html>

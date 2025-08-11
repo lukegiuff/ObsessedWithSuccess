@@ -33,6 +33,10 @@ const handleAuth = async (url: URL, env: Env) => {
 		return new Response('Missing OAUTH_CLIENT_ID!', { status: 500 });
 	}
 
+	if (!env.OAUTH_CLIENT_SECRET) {
+		return new Response('Missing OAUTH_CLIENT_SECRET!', { status: 500 });
+	}
+
 	const oauth2 = createOAuth(env);
 	const authorizationUri = oauth2.authorizeURL({
 		redirect_uri: `https://${url.hostname}/callback?provider=github`,
@@ -103,6 +107,10 @@ export default {
 		try {
 			let response;
 			
+			console.log('Worker request:', url.pathname, url.search);
+			console.log('Environment check - Client ID exists:', !!env.OAUTH_CLIENT_ID);
+			console.log('Environment check - Client Secret exists:', !!env.OAUTH_CLIENT_SECRET);
+			
 			if (url.pathname === '/auth') {
 				response = await handleAuth(url, env);
 			} else if (url.pathname === '/callback') {
@@ -117,8 +125,10 @@ export default {
 
 			return response;
 		} catch (error) {
+			console.error('Worker error:', error);
 			const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-			return new Response(`Error: ${errorMessage}`, { 
+			const errorStack = error instanceof Error ? error.stack : '';
+			return new Response(`Error: ${errorMessage}\nStack: ${errorStack}`, { 
 				status: 500,
 				headers: corsHeaders
 			});
