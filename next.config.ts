@@ -1,14 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: '/config.yml',
-        destination: '/api/config',
-      },
-    ];
-  },
   async headers() {
     return [
       {
