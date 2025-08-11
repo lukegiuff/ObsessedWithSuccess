@@ -1,13 +1,13 @@
 backend:
   name: github
-  repo: username/repository-name  # Update this with actual repo
+  repo: giuffa88/ObsessedWithSuccess  # Update this with your actual repo
   branch: main
-  base_url: https://decap-proxy-projectname.username.workers.dev  # Update this with actual worker URL
+  base_url: https://decap-proxy-obsessedwithsuccess.giuffa88.workers.dev
   auth_endpoint: /auth
 
 local_backend: false
-site_url: "https://your-domain.com"  # Update this with actual domain
-display_url: "https://your-domain.com"  # Update this with actual domain
+site_url: "https://owsconsultinggroup.com"
+display_url: "https://owsconsultinggroup.com"
 media_folder: "public/assets/images"
 public_folder: "/assets/images"
 
