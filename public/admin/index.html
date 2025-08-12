@@ -8,6 +8,8 @@
   <script>
     // Set manual init BEFORE loading CMS
     window.CMS_MANUAL_INIT = true;
+    // Prevent automatic config loading
+    window.CMS_CONFIG = null;
   </script>
 </head>
 <body>
@@ -218,7 +220,11 @@
     };
     
     console.log('Initializing CMS with manual config:', config);
-    CMS.init({ config });
+    // Initialize with explicit config, bypassing any automatic loading
+    CMS.init({ 
+      config: config,
+      automaticOptimizations: false
+    });
   </script>
 </body>
 </html>
