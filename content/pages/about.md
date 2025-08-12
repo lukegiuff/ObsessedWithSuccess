@@ -11,7 +11,7 @@ We are a specialized technology recruiting and consulting firm **built by operat
 
 Founded by technology professionals who have operated in the space, we understand what separates good talent from transformational talent. Our journey began with a simple realization: traditional recruiting firms don't truly understand the complex technical requirements and evolving nature of modern technology roles.
 
-### What TESTEST Drives Us
+### What Drives Us
 
 * **Operator Experience**: We've been in the trenches, so we know what success looks like
 * **Technical Depth**: We assess competency beyond surface-level certifications
