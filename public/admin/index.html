@@ -14,8 +14,11 @@
   <div id="nc-root"></div>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Wait for CMS to be fully loaded before initializing with config
-    const config = {
+    // Wait for CMS to be fully loaded, then override with our structured config
+    document.addEventListener('DOMContentLoaded', function() {
+      // Small delay to ensure CMS is ready
+      setTimeout(function() {
+        const config = {
       backend: {
         name: 'github',
         repo: 'lukegiuff/ObsessedWithSuccess',
@@ -217,7 +220,10 @@
       ]
     };
     
+    // Initialize CMS with our structured configuration
     CMS.init({ config });
+      }, 500); // 500ms delay to ensure CMS is ready
+    });
   </script>
 </body>
 </html>
