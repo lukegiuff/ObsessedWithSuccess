@@ -1,0 +1,10 @@
+# This file exists only to prevent 404 errors
+# The actual configuration is loaded manually in index.html
+backend:
+  name: github
+  repo: lukegiuff/ObsessedWithSuccess
+  branch: main
+  base_url: https://decap-proxy-obsessedwithsuccess.giuffa88.workers.dev
+  auth_endpoint: /auth
+
+collections: []

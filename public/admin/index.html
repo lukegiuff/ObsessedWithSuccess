@@ -16,6 +16,14 @@
   <div id="nc-root"></div>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Wait for CMS to load, then initialize immediately
+    window.addEventListener('DOMContentLoaded', function() {
+      // Override any automatic config loading
+      if (window.CMS) {
+        console.log('CMS loaded, preventing automatic config fetch');
+      }
+    });
+    
     // Initialize CMS - it will use the custom config path
     const config = {
       backend: {
@@ -220,11 +228,12 @@
     };
     
     console.log('Initializing CMS with manual config:', config);
-    // Initialize with explicit config, bypassing any automatic loading
-    CMS.init({ 
-      config: config,
-      automaticOptimizations: false
-    });
+    
+    // Wait a moment for CMS to finish loading, then force our config
+    setTimeout(() => {
+      console.log('Force initializing with our config');
+      CMS.init({ config });
+    }, 100);
   </script>
 </body>
 </html>
