@@ -105,7 +105,10 @@ async function markdownToHtml(markdown: string): Promise<string> {
 function parseMarkdownSections(content: string): PageContent['parsedSections'] {
   const lines = content.split('\n');
   const sections: PageContent['parsedSections'] = {
-    services: [],
+    services: {
+      intro: undefined,
+      items: []
+    },
     approach: {
       traditional: [],
       ourApproach: []
@@ -135,7 +138,7 @@ function parseMarkdownSections(content: string): PageContent['parsedSections'] {
     )) {
       // Save previous service if exists
       if (currentService.title && currentService.description?.trim()) {
-        sections.services!.push({
+        sections.services!.items!.push({
           title: currentService.title,
           description: currentService.description.trim()
         });
@@ -164,7 +167,7 @@ function parseMarkdownSections(content: string): PageContent['parsedSections'] {
   
   // Save final service
   if (currentService.title && currentService.description?.trim()) {
-    sections.services!.push({
+    sections.services!.items!.push({
       title: currentService.title,
       description: currentService.description.trim()
     });
