@@ -25,8 +25,31 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Hero Quote", name: "hero_quote", widget: "text", required: false, hint: "Main hero section quote"}
+      - label: "Services"
+        name: "services"
+        widget: "list"
+        fields:
+          - {label: "Service Title", name: "title", widget: "string"}
+          - {label: "Service Description", name: "description", widget: "text"}
+      - label: "About Our Approach"
+        name: "about_approach"
+        widget: "object"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "About Our Approach"}
+          - {label: "Introduction", name: "intro", widget: "text"}
+          - label: "Key Points"
+            name: "points"
+            widget: "list"
+            field: {label: "Point", name: "point", widget: "string"}
+      - label: "Call to Action"
+        name: "call_to_action"
+        widget: "object"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "Experience the Technology Difference"}
+          - {label: "Content", name: "content", widget: "text"}
+      - {label: "Body (Legacy)", name: "body", widget: "markdown", required: false, hint: "Legacy markdown content - use structured fields above instead"}
 
   - name: "blog"
     label: "Blog Posts"

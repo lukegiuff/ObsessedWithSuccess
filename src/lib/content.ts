@@ -21,6 +21,16 @@ export interface PageContent {
       ourApproach: string[];
     };
     contactMessage?: string;
+    // New structured fields
+    aboutApproach?: {
+      title: string;
+      intro: string;
+      points: string[];
+    };
+    callToAction?: {
+      title: string;
+      content: string;
+    };
   };
 }
 
@@ -159,7 +169,28 @@ export async function getPageBySlug(slug: string): Promise<PageContent | null> {
     const { data, content } = matter(fileContents);
     
     const htmlContent = await markdownToHtml(content);
-    const parsedSections = parseMarkdownSections(content);
+    
+    // Use structured frontmatter data if available, otherwise parse markdown
+    let parsedSections: PageContent['parsedSections'] = {};
+    
+    if (data.hero_quote || data.services || data.about_approach || data.call_to_action) {
+      // Use structured frontmatter data
+      parsedSections = {
+        heroQuote: data.hero_quote,
+        services: data.services || [],
+        approach: data.about_approach ? {
+          traditional: [], // Legacy field
+          ourApproach: data.about_approach.points || []
+        } : undefined,
+        contactMessage: data.call_to_action?.content,
+        // Add new structured fields
+        aboutApproach: data.about_approach,
+        callToAction: data.call_to_action
+      };
+    } else {
+      // Fallback to parsing markdown content
+      parsedSections = parseMarkdownSections(content);
+    }
     
     return {
       slug,
