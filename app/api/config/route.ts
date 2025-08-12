@@ -1,27 +1,15 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+
+// Configure for Edge Runtime (required for Cloudflare Pages)
+export const runtime = 'edge';
 
 export async function GET() {
-  try {
-    // Read the config.yml file from public/admin/
-    const configPath = path.join(process.cwd(), 'public', 'admin', 'config.yml');
-    const configContent = fs.readFileSync(configPath, 'utf8');
-    
-    console.log('📄 API: Serving config.yml, length:', configContent.length);
-    
-    return new NextResponse(configContent, {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/yaml',
-        'Cache-Control': 'no-cache',
-      },
-    });
-  } catch (error) {
-    console.error('❌ API: Error reading config.yml:', error);
-    
-    // Return a minimal fallback config
-    const fallbackConfig = `# Fallback configuration
+  // Since Edge Runtime doesn't support fs operations,
+  // return the configuration directly as a string
+  const configContent = `# Minimal stub configuration for Decap CMS
+# This prevents 404 errors while allowing manual JavaScript initialization
+# The actual configuration is defined in index.html
+
 backend:
   name: github
   repo: lukegiuff/ObsessedWithSuccess
@@ -35,19 +23,22 @@ display_url: "https://owsconsultinggroup.com"
 media_folder: "public/assets/images"
 public_folder: "/assets/images"
 
+# Minimal collections - these will be overridden by JavaScript config
 collections:
-  - name: "fallback"
-    label: "Fallback Loading..."
-    folder: "content/fallback"
+  - name: "stub"
+    label: "Loading..."
+    folder: "content/stub"
     create: false
     fields:
       - {label: "Loading", name: "loading", widget: "string"}`;
 
-    return new NextResponse(fallbackConfig, {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/yaml',
-      },
-    });
-  }
+  console.log('📄 API: Serving config.yml via Edge Runtime');
+  
+  return new NextResponse(configContent, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/yaml',
+      'Cache-Control': 'no-cache',
+    },
+  });
 }
