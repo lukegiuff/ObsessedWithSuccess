@@ -5,7 +5,7 @@ export const runtime = 'edge'
 export async function GET() {
   const config = `backend:
   name: github
-  repo: giuffa88/ObsessedWithSuccess
+  repo: lukegiuff/ObsessedWithSuccess
   branch: main
   base_url: https://decap-proxy-obsessedwithsuccess.giuffa88.workers.dev
   auth_endpoint: /auth
