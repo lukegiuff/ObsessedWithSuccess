@@ -22,11 +22,10 @@ call_to_action:
   title: "Experience the Technology Difference"
   content: "Ready to work with recruiters who truly understand the technology landscape across Software, Data, Cloud, Security, and Telecom? Let's start a conversation about your specialized talent needs. Contact us today to discover how our cross-technology expertise becomes your competitive advantage. Specialized knowledge across multiple technology domains - let's discuss your industry's unique challenges."
 ---
-
 # Built by Operators, Driven by Results
 
 ## We are Obsessed With Your Success!
 
 What separates Obsessed With Success is simple: **we are technology professionals that have worked in the space, so we know what good looks like regardless of resume.** 
 
-Our approach goes beyond traditional recruiting. We understand the complex technical requirements, evolving architectures, and innovation cycles across **Software, Data, Cloud, Security, and Telecom** because we've operated within these industries ourselves. 
+Our approach goes beyond traditional recruiting. We understand the complex technical requirements, evolving architectures, and innovation cycles across **Software, Data, Cloud, Security, and Telecom** because we've operated within these industries ourselves.
