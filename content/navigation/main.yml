@@ -1,7 +1,4 @@
 items:
-  - label: "Home"
-    url: "#home"
-    external: false
   - label: "About"
     url: "#about"
     external: false

@@ -84,10 +84,22 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
-              <p className="text-xl text-slate-700 leading-relaxed">
-                {homeContent.parsedSections?.aboutApproach?.intro || 
+              <p className="text-slate-700 leading-relaxed">
+                {homeContent.parsedSections?.aboutApproach?.intro ? (
+                  <span dangerouslySetInnerHTML={{
+                    __html: homeContent.parsedSections.aboutApproach.intro
+                      .replace(
+                        'We are a specialized technology recruiting and consulting firm built by operators, driven by results.',
+                        '<strong>We are a specialized technology recruiting and consulting firm built by operators, driven by results.</strong>'
+                      )
+                      .replace(
+                        'traditional recruiting firms don\'t truly understand the complex technical requirements and evolving nature of modern technology roles.',
+                        '<strong>traditional recruiting firms don\'t truly understand the complex technical requirements and evolving nature of modern technology roles.</strong>'
+                      )
+                  }} />
+                ) : (
                   "Traditional recruiting firms focus on matching keywords and credentials. We focus on matching potential with purpose."
-                }
+                )}
               </p>
             </div>
 
