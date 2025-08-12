@@ -19,7 +19,7 @@ Traditional recruiting firms focus on matching keywords and credentials. We focu
 
 Our team consists of technology industry veterans who have navigated digital transformations, cloud migrations, security implementations, data platform deployments, and network innovations across diverse technology sectors. This insider perspective allows us to:
 
-* **Identify specialized talent** with real technology experience that others overlook
+* **TESTEST Identify specialized talent** with real technology experience that others overlook
 * **Assess technical competency** beyond surface-level certifications across multiple domains
 * **Understand industry challenges** from cloud architecture to cybersecurity, data engineering to network optimization
 * **Deliver professionals** who don't just meet requirements—they drive technological transformation
