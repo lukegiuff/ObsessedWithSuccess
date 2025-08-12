@@ -1,9 +1,28 @@
-import { NextResponse } from 'next/server'
-
-export const runtime = 'edge'
+import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
 
 export async function GET() {
-  const config = `backend:
+  try {
+    // Read the config.yml file from public/admin/
+    const configPath = path.join(process.cwd(), 'public', 'admin', 'config.yml');
+    const configContent = fs.readFileSync(configPath, 'utf8');
+    
+    console.log('📄 API: Serving config.yml, length:', configContent.length);
+    
+    return new NextResponse(configContent, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/yaml',
+        'Cache-Control': 'no-cache',
+      },
+    });
+  } catch (error) {
+    console.error('❌ API: Error reading config.yml:', error);
+    
+    // Return a minimal fallback config
+    const fallbackConfig = `# Fallback configuration
+backend:
   name: github
   repo: lukegiuff/ObsessedWithSuccess
   branch: main
@@ -17,138 +36,18 @@ media_folder: "public/assets/images"
 public_folder: "/assets/images"
 
 collections:
-  - name: "pages"
-    label: "Pages"
-    folder: "content/pages"
-    create: true
-    slug: "{{slug}}"
+  - name: "fallback"
+    label: "Fallback Loading..."
+    folder: "content/fallback"
+    create: false
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
-                   - {label: "Hero Quote", name: "hero_quote", widget: "text", required: false, hint: "Main hero section quote"}
-             - label: "Services"
-               name: "services"
-               widget: "object"
-               fields:
-                 - {label: "Section Intro", name: "intro", widget: "text", default: "Comprehensive talent solutions backed by real-world experience and industry expertise."}
-                 - label: "Service Items"
-                   name: "items"
-                   widget: "list"
-                   fields:
-                     - {label: "Service Title", name: "title", widget: "string"}
-                     - {label: "Service Description", name: "description", widget: "text"}
-             - label: "About Our Approach"
-               name: "about_approach"
-               widget: "object"
-               fields:
-                 - {label: "Section Title", name: "title", widget: "string", default: "About Our Approach"}
-                 - {label: "Introduction", name: "intro", widget: "text"}
-                 - label: "Key Points"
-                   name: "points"
-                   widget: "list"
-                   field: {label: "Point", name: "point", widget: "string"}
-             - label: "The Difference Section"
-               name: "difference_section"
-               widget: "object"
-               fields:
-                 - {label: "Section Title", name: "title", widget: "string", default: "The Difference"}
-                 - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Difference", hint: "Highlighted word in title"}
-                 - label: "Traditional Recruiting"
-                   name: "traditional"
-                   widget: "object"
-                   fields:
-                     - {label: "Title", name: "title", widget: "string", default: "Traditional Recruiting"}
-                     - label: "Points"
-                       name: "points"
-                       widget: "list"
-                       field: {label: "Point", name: "point", widget: "string"}
-                 - label: "Our Approach"
-                   name: "our_approach"
-                   widget: "object"
-                   fields:
-                     - {label: "Title", name: "title", widget: "string", default: "Our Approach"}
-                     - label: "Points"
-                       name: "points"
-                       widget: "list"
-                       field: {label: "Point", name: "point", widget: "string"}
-                 - {label: "Bottom Quote", name: "quote", widget: "text", default: "We don't just place candidates. We elevate careers and transform organizations through the power of experience-driven insight."}
-             - label: "Contact Section"
-               name: "contact_section"
-               widget: "object"
-               fields:
-                 - {label: "Section Title", name: "title", widget: "string", default: "Start the Conversation"}
-                 - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Conversation", hint: "Highlighted word in title"}
-                 - {label: "Introduction Text", name: "intro", widget: "text"}
-                 - label: "What to Expect"
-                   name: "expectations"
-                   widget: "list"
-                   field: {label: "Expectation", name: "expectation", widget: "string"}
-                 - {label: "CTA Button Text", name: "cta_text", widget: "string", default: "Schedule a Consultation"}
-                 - {label: "Email Subject", name: "email_subject", widget: "string", default: "Talent Strategy Consultation"}
-             - label: "Call to Action"
-               name: "call_to_action"
-               widget: "object"
-               fields:
-                 - {label: "Section Title", name: "title", widget: "string", default: "Experience the Technology Difference"}
-                 - {label: "Content", name: "content", widget: "text"}
-                   - {label: "Body (Legacy)", name: "body", widget: "markdown", required: false, hint: "Legacy markdown content - all content should now use structured fields above"}
+      - {label: "Loading", name: "loading", widget: "string"}`;
 
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "content/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - file: "content/settings/general.yml"
-        label: "General Settings"
-        name: "general"
-        fields:
-          - {label: "Site Title", name: "site_title", widget: "string"}
-          - {label: "Site Description", name: "site_description", widget: "text"}
-          - {label: "Site Logo", name: "site_logo", widget: "image", required: false}
-          - {label: "Contact Email", name: "contact_email", widget: "string"}
-          - {label: "Social Media", name: "social", widget: "object", fields: [
-              {label: "Twitter", name: "twitter", widget: "string", required: false},
-              {label: "LinkedIn", name: "linkedin", widget: "string", required: false},
-              {label: "GitHub", name: "github", widget: "string", required: false}
-            ]}
-          - label: "Technology Specializations"
-            name: "specializations"
-            widget: "list"
-            default: ["SOFTWARE", "DATA", "CLOUD", "SECURITY", "TELECOM"]
-            fields:
-              - {label: "Specialization", name: "name", widget: "string"}
-
-  - name: "navigation"
-    label: "Navigation"
-    files:
-      - file: "content/navigation/main.yml"
-        label: "Main Navigation"
-        name: "main"
-        fields:
-          - label: "Navigation Items"
-            name: "items"
-            widget: "list"
-            fields:
-              - {label: "Label", name: "label", widget: "string"}
-              - {label: "URL", name: "url", widget: "string"}
-              - {label: "External", name: "external", widget: "boolean", default: false}`;
-
-  return new NextResponse(config, {
-    headers: {
-      'Content-Type': 'text/yaml',
-      'Cache-Control': 'no-cache',
-    },
-  })
+    return new NextResponse(fallbackConfig, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/yaml',
+      },
+    });
+  }
 }

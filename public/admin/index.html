@@ -8,6 +8,41 @@
   <script>
     // Set manual init BEFORE loading CMS
     window.CMS_MANUAL_INIT = true;
+    
+    // Debug logging
+    console.log('🔧 CMS Manual Init Setup');
+    console.log('📍 Current URL:', window.location.href);
+    console.log('📂 Base URL:', window.location.origin);
+    console.log('🏠 Pathname:', window.location.pathname);
+    
+    // Test config.yml accessibility
+    fetch('./config.yml')
+      .then(response => {
+        console.log('✅ config.yml fetch response:', response.status, response.statusText);
+        return response.text();
+      })
+      .then(text => {
+        console.log('📄 config.yml content length:', text.length);
+        console.log('📄 config.yml first 100 chars:', text.substring(0, 100));
+      })
+      .catch(error => {
+        console.error('❌ config.yml fetch error:', error);
+        
+        // Try alternative paths
+        console.log('🔍 Trying alternative paths...');
+        
+        fetch('/admin/config.yml')
+          .then(resp => console.log('🔍 /admin/config.yml:', resp.status))
+          .catch(e => console.log('❌ /admin/config.yml failed:', e.message));
+          
+        fetch('/config.yml')
+          .then(resp => console.log('🔍 /config.yml:', resp.status))
+          .catch(e => console.log('❌ /config.yml failed:', e.message));
+          
+        fetch('/api/config')
+          .then(resp => console.log('🔍 /api/config:', resp.status))
+          .catch(e => console.log('❌ /api/config failed:', e.message));
+      });
   </script>
 </head>
 <body>
@@ -15,9 +50,28 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
     // Wait for CMS to be fully loaded, then override with our structured config
+    console.log('🚀 Starting CMS initialization process...');
+    
+    // Monitor CMS loading
+    if (window.CMS) {
+      console.log('✅ CMS object already available');
+    } else {
+      console.log('⏳ Waiting for CMS object...');
+    }
+    
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('📄 DOM Content Loaded');
+      
       // Small delay to ensure CMS is ready
       setTimeout(function() {
+        console.log('🔄 Initializing manual CMS config...');
+        
+        if (!window.CMS) {
+          console.error('❌ CMS object not found!');
+          return;
+        }
+        
+        console.log('✅ CMS object found, proceeding with configuration...');
         const config = {
       backend: {
         name: 'github',
@@ -221,7 +275,14 @@
     };
     
     // Initialize CMS with our structured configuration
-    CMS.init({ config });
+    console.log('🎯 Calling CMS.init with structured config...');
+    
+    try {
+      CMS.init({ config });
+      console.log('✅ CMS.init called successfully!');
+    } catch (error) {
+      console.error('❌ CMS.init failed:', error);
+    }
       }, 500); // 500ms delay to ensure CMS is ready
     });
   </script>
