@@ -77,7 +77,7 @@ export default async function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="serif-heading text-4xl md:text-5xl font-light text-slate-900 mb-6">
-              About Our <span className="font-normal">Approach</span>
+              {homeContent.parsedSections?.aboutApproach?.title || "About Our Approach"}
             </h2>
             <div className="w-24 h-1 bg-[#deae54] mx-auto"></div>
           </div>
@@ -85,39 +85,50 @@ export default async function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
               <p className="text-xl text-slate-700 leading-relaxed">
-                Traditional recruiting firms focus on matching keywords and credentials. 
-                We focus on matching <strong className="text-slate-900">potential with purpose</strong>.
-              </p>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                Our team consists of industry veterans who have held the very positions we&rsquo;re helping to fill. 
-                This insider perspective allows us to identify what others miss.
+                {homeContent.parsedSections?.aboutApproach?.intro || 
+                  "Traditional recruiting firms focus on matching keywords and credentials. We focus on matching potential with purpose."
+                }
               </p>
             </div>
 
             <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
-                <div>
-                  <h3 className="text-xl font-medium text-slate-900 mb-2">Identify Hidden Talent</h3>
-                  <p className="text-slate-600">We see potential that others overlook, focusing on capability over credentials.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
-                <div>
-                  <h3 className="text-xl font-medium text-slate-900 mb-2">Assess Cultural Fit</h3>
-                  <p className="text-slate-600">Understanding beyond surface-level qualifications to ensure lasting success.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
-                <div>
-                  <h3 className="text-xl font-medium text-slate-900 mb-2">Understand Real Challenges</h3>
-                  <p className="text-slate-600">We&rsquo;ve been in your shoes and know what each role truly demands.</p>
-                </div>
-              </div>
+              {homeContent.parsedSections?.aboutApproach?.points?.length ? (
+                homeContent.parsedSections.aboutApproach.points.map((point, index) => (
+                  <div key={index} className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
+                    <div>
+                      <p className="text-slate-600 leading-relaxed">{point}</p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                // Fallback content
+                <>
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
+                    <div>
+                      <h3 className="text-xl font-medium text-slate-900 mb-2">Identify Hidden Talent</h3>
+                      <p className="text-slate-600">We see potential that others overlook, focusing on capability over credentials.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
+                    <div>
+                      <h3 className="text-xl font-medium text-slate-900 mb-2">Assess Cultural Fit</h3>
+                      <p className="text-slate-600">Understanding beyond surface-level qualifications to ensure lasting success.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-3 h-3 bg-[#deae54] rounded-full mt-3"></div>
+                    <div>
+                      <h3 className="text-xl font-medium text-slate-900 mb-2">Understand Real Challenges</h3>
+                      <p className="text-slate-600">We&rsquo;ve been in your shoes and know what each role truly demands.</p>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -274,7 +285,7 @@ export default async function Home() {
             </h2>
             <div className="w-24 h-1 bg-[#deae54] mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              {homeContent.parsedSections?.contactMessage || 
+              {homeContent.parsedSections?.callToAction?.content || 
                 "Ready to work with recruiters who truly understand the technology landscape across Software, Data, Cloud, Security, and Telecom? Let's discuss how our specialized expertise becomes your competitive advantage."
               }
             </p>

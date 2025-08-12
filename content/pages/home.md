@@ -11,16 +11,16 @@ services:
   - title: "Technology Professional Staffing"
     description: "Mid-level to senior professional placements in software engineering, data science, cloud solutions, security operations, and telecom engineering with a focus on long-term success and deep technical expertise."
 about_approach:
-  title: "About Our Approach"
-  intro: "Traditional recruiting firms focus on matching keywords and credentials. We focus on matching technology expertise with strategic vision across multiple specialized domains. Our team consists of technology industry veterans who have navigated digital transformations, cloud migrations, security implementations, data platform deployments, and network innovations across diverse technology sectors. This insider perspective allows us to:"
+  title: "About Obsessed With Success"
+  intro: "We are a specialized technology recruiting and consulting firm built by operators, driven by results. Our mission is to connect exceptional technology talent with organizations that demand excellence across Software, Data, Cloud, Security, and Telecommunications. Founded by technology professionals who have operated in the space, we understand what separates good talent from transformational talent. Our journey began with a simple realization: traditional recruiting firms don't truly understand the complex technical requirements and evolving nature of modern technology roles."
   points:
-    - "Identify specialized talent with real technology experience that others overlook"
-    - "Assess technical competency beyond surface-level certifications across multiple domains"
-    - "Understand industry challenges from cloud architecture to cybersecurity, data engineering to network optimization"
-    - "Deliver professionals who don't just meet requirements—they drive technological transformation"
+    - "Operator Experience: We've been in the trenches, so we know what success looks like"
+    - "Technical Depth: We assess competency beyond surface-level certifications"
+    - "Industry Specialization: Deep expertise across Software, Data, Cloud, Security, and Telecom"
+    - "Results Focus: We're obsessed with your success, not just filling positions"
 call_to_action:
-  title: "Experience the Technology Difference"
-  content: "Ready to work with recruiters who truly understand the technology landscape across Software, Data, Cloud, Security, and Telecom? Let's start a conversation about your specialized talent needs. Contact us today to discover how our cross-technology expertise becomes your competitive advantage. Specialized knowledge across multiple technology domains - let's discuss your industry's unique challenges."
+  title: "Why Choose Us"
+  content: "Because we've operated in these technology spaces ourselves, we understand the nuances that make the difference between a good hire and a transformational one. We don't just find candidates—we find the professionals who will drive your technology initiatives forward. Ready to experience the difference? Let's discuss how our technology expertise becomes your competitive advantage."
 ---
 # Built by Operators, Driven by Results
 
