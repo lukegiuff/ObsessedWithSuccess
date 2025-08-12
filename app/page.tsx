@@ -143,13 +143,15 @@ export default async function Home() {
             </h2>
             <div className="w-24 h-1 bg-[#deae54] mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Comprehensive talent solutions backed by real-world experience and industry expertise.
+              {homeContent.parsedSections?.services?.intro || 
+                "Comprehensive talent solutions backed by real-world experience and industry expertise."
+              }
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {homeContent.parsedSections?.services?.length ? (
-              homeContent.parsedSections.services.map((service, index) => {
+            {homeContent.parsedSections?.services?.items?.length ? (
+              homeContent.parsedSections.services.items.map((service, index) => {
                 const icons = [
                   <path key={0} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />,
                   <path key={1} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />,
@@ -171,7 +173,31 @@ export default async function Home() {
                 );
               })
             ) : (
-              // Fallback to hardcoded services if parsing fails
+              // Fallback to legacy services format or hardcoded services
+              (homeContent.parsedSections?.services as any)?.length ? (
+                (homeContent.parsedSections.services as any).map((service: any, index: number) => {
+                  const icons = [
+                    <path key={0} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />,
+                    <path key={1} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />,
+                    <path key={2} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  ];
+                  
+                  return (
+                    <div key={index} className="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                      <div className="w-16 h-16 bg-[#deae54]/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg className="w-8 h-8 text-[#deae54]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          {icons[index % icons.length]}
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-medium text-slate-900 mb-4">{service.title}</h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  );
+                })
+              ) : (
+                // Ultimate fallback to hardcoded services if parsing fails
               [
                 {
                   title: "Technology Executive Recruiting",
@@ -216,61 +242,93 @@ export default async function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="serif-heading text-4xl md:text-5xl font-light text-white mb-6">
-              The <span className="font-normal text-[#deae54]">Difference</span>
+              {homeContent.parsedSections?.differenceSection?.title || "The"}{" "}
+              <span className="font-normal text-[#deae54]">
+                {homeContent.parsedSections?.differenceSection?.subtitle || "Difference"}
+              </span>
             </h2>
             <div className="w-24 h-1 bg-[#deae54] mx-auto mb-6"></div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="text-white">
-              <h3 className="serif-heading text-3xl font-light mb-8">Traditional Recruiting</h3>
+              <h3 className="serif-heading text-3xl font-light mb-8">
+                {homeContent.parsedSections?.differenceSection?.traditional?.title || "Traditional Recruiting"}
+              </h3>
               <ul className="space-y-4 text-gray-300">
-                <li className="flex items-center space-x-3">
-                  <span className="text-red-400">×</span>
-                  <span>Focuses on keyword matching</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-red-400">×</span>
-                  <span>Relies solely on resume credentials</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-red-400">×</span>
-                  <span>Limited technology industry understanding</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-red-400">×</span>
-                  <span>Transactional, one-size-fits-all approach</span>
-                </li>
+                {homeContent.parsedSections?.differenceSection?.traditional?.points?.length ? (
+                  homeContent.parsedSections.differenceSection.traditional.points.map((point, index) => (
+                    <li key={index} className="flex items-center space-x-3">
+                      <span className="text-red-400">×</span>
+                      <span>{point}</span>
+                    </li>
+                  ))
+                ) : (
+                  // Fallback content
+                  <>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-red-400">×</span>
+                      <span>Focuses on keyword matching</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-red-400">×</span>
+                      <span>Relies solely on resume credentials</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-red-400">×</span>
+                      <span>Limited technology industry understanding</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-red-400">×</span>
+                      <span>Transactional, one-size-fits-all approach</span>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
 
             <div className="text-white">
-              <h3 className="serif-heading text-3xl font-light mb-8 text-[#deae54]">Our Approach</h3>
+              <h3 className="serif-heading text-3xl font-light mb-8 text-[#deae54]">
+                {homeContent.parsedSections?.differenceSection?.our_approach?.title || "Our Approach"}
+              </h3>
               <ul className="space-y-4 text-gray-200">
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Evaluates technology expertise and cultural fit across multiple domains</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Understands complex technology requirements from software to security</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Technology industry veteran insight across specializations</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Long-term partnership with scalable expertise</span>
-                </li>
+                {homeContent.parsedSections?.differenceSection?.our_approach?.points?.length ? (
+                  homeContent.parsedSections.differenceSection.our_approach.points.map((point, index) => (
+                    <li key={index} className="flex items-center space-x-3">
+                      <span className="text-green-400">✓</span>
+                      <span>{point}</span>
+                    </li>
+                  ))
+                ) : (
+                  // Fallback content
+                  <>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-green-400">✓</span>
+                      <span>Evaluates technology expertise and cultural fit across multiple domains</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-green-400">✓</span>
+                      <span>Understands complex technology requirements from software to security</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-green-400">✓</span>
+                      <span>Technology industry veteran insight across specializations</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-green-400">✓</span>
+                      <span>Long-term partnership with scalable expertise</span>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>
 
           <div className="text-center mt-16">
             <blockquote className="serif-heading text-2xl md:text-3xl font-light text-[#deae54] italic max-w-4xl mx-auto leading-relaxed">
-              &ldquo;We don&rsquo;t just place candidates. We elevate careers and transform organizations 
-              through the power of experience-driven insight.&rdquo;
+              &ldquo;{homeContent.parsedSections?.differenceSection?.quote || 
+                "We don't just place candidates. We elevate careers and transform organizations through the power of experience-driven insight."
+              }&rdquo;
             </blockquote>
           </div>
         </div>
@@ -281,11 +339,14 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="serif-heading text-4xl md:text-5xl font-light text-slate-900 mb-6">
-              Start the <span className="font-normal">Conversation</span>
+              {homeContent.parsedSections?.contactSection?.title || "Start the"}{" "}
+              <span className="font-normal">
+                {homeContent.parsedSections?.contactSection?.subtitle || "Conversation"}
+              </span>
             </h2>
             <div className="w-24 h-1 bg-[#deae54] mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              {homeContent.parsedSections?.callToAction?.content || 
+              {homeContent.parsedSections?.contactSection?.intro || 
                 "Ready to work with recruiters who truly understand the technology landscape across Software, Data, Cloud, Security, and Telecom? Let's discuss how our specialized expertise becomes your competitive advantage."
               }
             </p>
@@ -326,20 +387,29 @@ export default async function Home() {
               <div>
                 <h3 className="text-2xl font-medium text-slate-900 mb-6">What to Expect</h3>
                 <div className="space-y-4 text-slate-600">
-                  <p>✓ Initial technology consultation within 24 hours</p>
-                  <p>✓ Customized technology talent strategy discussion</p>
-                  <p>✓ No obligation, just industry-focused conversation</p>
-                  <p>✓ Insights from technology industry veterans</p>
+                  {homeContent.parsedSections?.contactSection?.expectations?.length ? (
+                    homeContent.parsedSections.contactSection.expectations.map((expectation, index) => (
+                      <p key={index}>✓ {expectation}</p>
+                    ))
+                  ) : (
+                    // Fallback content
+                    <>
+                      <p>✓ Initial technology consultation within 24 hours</p>
+                      <p>✓ Customized technology talent strategy discussion</p>
+                      <p>✓ No obligation, just industry-focused conversation</p>
+                      <p>✓ Insights from technology industry veterans</p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="text-center mt-12">
               <a
-                href={`mailto:${siteSettings.contact_email}?subject=Talent Strategy Consultation`}
+                href={`mailto:${siteSettings.contact_email}?subject=${encodeURIComponent(homeContent.parsedSections?.contactSection?.email_subject || "Talent Strategy Consultation")}`}
                 className="bg-[#deae54] hover:bg-[#deae54]/90 text-white px-12 py-4 text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                Schedule a Consultation
+                {homeContent.parsedSections?.contactSection?.cta_text || "Schedule a Consultation"}
               </a>
             </div>
           </div>

@@ -15,7 +15,10 @@ export interface PageContent {
   content: string;
   parsedSections?: {
     heroQuote?: string;
-    services?: ServiceSection[];
+    services?: {
+      intro?: string;
+      items?: ServiceSection[];
+    };
     approach?: {
       traditional: string[];
       ourApproach: string[];
@@ -26,6 +29,27 @@ export interface PageContent {
       title: string;
       intro: string;
       points: string[];
+    };
+    differenceSection?: {
+      title: string;
+      subtitle: string;
+      traditional: {
+        title: string;
+        points: string[];
+      };
+      our_approach: {
+        title: string;
+        points: string[];
+      };
+      quote: string;
+    };
+    contactSection?: {
+      title: string;
+      subtitle: string;
+      intro: string;
+      expectations: string[];
+      cta_text: string;
+      email_subject: string;
     };
     callToAction?: {
       title: string;
@@ -170,27 +194,32 @@ export async function getPageBySlug(slug: string): Promise<PageContent | null> {
     
     const htmlContent = await markdownToHtml(content);
     
-    // Use structured frontmatter data if available, otherwise parse markdown
-    let parsedSections: PageContent['parsedSections'] = {};
-    
-    if (data.hero_quote || data.services || data.about_approach || data.call_to_action) {
-      // Use structured frontmatter data
-      parsedSections = {
-        heroQuote: data.hero_quote,
-        services: data.services || [],
-        approach: data.about_approach ? {
-          traditional: [], // Legacy field
-          ourApproach: data.about_approach.points || []
-        } : undefined,
-        contactMessage: data.call_to_action?.content,
-        // Add new structured fields
-        aboutApproach: data.about_approach,
-        callToAction: data.call_to_action
-      };
-    } else {
-      // Fallback to parsing markdown content
-      parsedSections = parseMarkdownSections(content);
-    }
+               // Use structured frontmatter data if available, otherwise parse markdown
+           let parsedSections: PageContent['parsedSections'] = {};
+           
+           if (data.hero_quote || data.services || data.about_approach || data.call_to_action || data.difference_section || data.contact_section) {
+             // Use structured frontmatter data
+             parsedSections = {
+               heroQuote: data.hero_quote,
+               services: data.services ? {
+                 intro: data.services.intro,
+                 items: data.services.items || data.services || [] // Handle both old and new format
+               } : undefined,
+               approach: data.about_approach ? {
+                 traditional: [], // Legacy field
+                 ourApproach: data.about_approach.points || []
+               } : undefined,
+               contactMessage: data.call_to_action?.content,
+               // Add new structured fields
+               aboutApproach: data.about_approach,
+               differenceSection: data.difference_section,
+               contactSection: data.contact_section,
+               callToAction: data.call_to_action
+             };
+           } else {
+             // Fallback to parsing markdown content
+             parsedSections = parseMarkdownSections(content);
+           }
     
     return {
       slug,

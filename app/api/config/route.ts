@@ -26,30 +26,73 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
-      - {label: "Hero Quote", name: "hero_quote", widget: "text", required: false, hint: "Main hero section quote"}
-      - label: "Services"
-        name: "services"
-        widget: "list"
-        fields:
-          - {label: "Service Title", name: "title", widget: "string"}
-          - {label: "Service Description", name: "description", widget: "text"}
-      - label: "About Our Approach"
-        name: "about_approach"
-        widget: "object"
-        fields:
-          - {label: "Section Title", name: "title", widget: "string", default: "About Our Approach"}
-          - {label: "Introduction", name: "intro", widget: "text"}
-          - label: "Key Points"
-            name: "points"
-            widget: "list"
-            field: {label: "Point", name: "point", widget: "string"}
-      - label: "Call to Action"
-        name: "call_to_action"
-        widget: "object"
-        fields:
-          - {label: "Section Title", name: "title", widget: "string", default: "Experience the Technology Difference"}
-          - {label: "Content", name: "content", widget: "text"}
-      - {label: "Body (Legacy)", name: "body", widget: "markdown", required: false, hint: "Legacy markdown content - use structured fields above instead"}
+                   - {label: "Hero Quote", name: "hero_quote", widget: "text", required: false, hint: "Main hero section quote"}
+             - label: "Services"
+               name: "services"
+               widget: "object"
+               fields:
+                 - {label: "Section Intro", name: "intro", widget: "text", default: "Comprehensive talent solutions backed by real-world experience and industry expertise."}
+                 - label: "Service Items"
+                   name: "items"
+                   widget: "list"
+                   fields:
+                     - {label: "Service Title", name: "title", widget: "string"}
+                     - {label: "Service Description", name: "description", widget: "text"}
+             - label: "About Our Approach"
+               name: "about_approach"
+               widget: "object"
+               fields:
+                 - {label: "Section Title", name: "title", widget: "string", default: "About Our Approach"}
+                 - {label: "Introduction", name: "intro", widget: "text"}
+                 - label: "Key Points"
+                   name: "points"
+                   widget: "list"
+                   field: {label: "Point", name: "point", widget: "string"}
+             - label: "The Difference Section"
+               name: "difference_section"
+               widget: "object"
+               fields:
+                 - {label: "Section Title", name: "title", widget: "string", default: "The Difference"}
+                 - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Difference", hint: "Highlighted word in title"}
+                 - label: "Traditional Recruiting"
+                   name: "traditional"
+                   widget: "object"
+                   fields:
+                     - {label: "Title", name: "title", widget: "string", default: "Traditional Recruiting"}
+                     - label: "Points"
+                       name: "points"
+                       widget: "list"
+                       field: {label: "Point", name: "point", widget: "string"}
+                 - label: "Our Approach"
+                   name: "our_approach"
+                   widget: "object"
+                   fields:
+                     - {label: "Title", name: "title", widget: "string", default: "Our Approach"}
+                     - label: "Points"
+                       name: "points"
+                       widget: "list"
+                       field: {label: "Point", name: "point", widget: "string"}
+                 - {label: "Bottom Quote", name: "quote", widget: "text", default: "We don't just place candidates. We elevate careers and transform organizations through the power of experience-driven insight."}
+             - label: "Contact Section"
+               name: "contact_section"
+               widget: "object"
+               fields:
+                 - {label: "Section Title", name: "title", widget: "string", default: "Start the Conversation"}
+                 - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Conversation", hint: "Highlighted word in title"}
+                 - {label: "Introduction Text", name: "intro", widget: "text"}
+                 - label: "What to Expect"
+                   name: "expectations"
+                   widget: "list"
+                   field: {label: "Expectation", name: "expectation", widget: "string"}
+                 - {label: "CTA Button Text", name: "cta_text", widget: "string", default: "Schedule a Consultation"}
+                 - {label: "Email Subject", name: "email_subject", widget: "string", default: "Talent Strategy Consultation"}
+             - label: "Call to Action"
+               name: "call_to_action"
+               widget: "object"
+               fields:
+                 - {label: "Section Title", name: "title", widget: "string", default: "Experience the Technology Difference"}
+                 - {label: "Content", name: "content", widget: "text"}
+                   - {label: "Body (Legacy)", name: "body", widget: "markdown", required: false, hint: "Legacy markdown content - all content should now use structured fields above"}
 
   - name: "blog"
     label: "Blog Posts"
